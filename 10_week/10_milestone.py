@@ -1,17 +1,16 @@
-menu = ['Add item','View cart','Remove item','Compute total','Quit']
+menu = ['Add item','View cart','Remove item','Compute total','Quantity of Items','Update Item','Quit']
 cart = []
 prices = []
 count = 0
 action = None
 
-while action != '5':
+while action != '7':
 
     print('\nPlease select one of the following: ')
 
     for option in menu:
         count += 1
         print(f'{count}. {option}')
-    print(f"You have listed '{len(cart)}' item/s in your cart.")
     count = 0
 
     action = input('Please enter an action: ')
@@ -53,5 +52,23 @@ while action != '5':
         print(f'The total price of the items in the shopping cart is ${total_price:.2f}')
         print()
 
-    #if action != 1 and action != 2 and action != 3 and action != 4 and action != 5 and 
+    if action == '5':
+        total_items = len(cart)
+        print(f"You have listed '{len(cart)}' item/s in your cart.")
+
+    if action == '6':
+        while True:
+            update_item = int(input('Which item would you like to update? '))
+            update_item = update_item - 1
+            if update_item >= 0 and update_item < len(cart):
+                    new_price = float(input('Enter the new price: '))
+                    # Update the price of the selected item
+                    prices[update_item] = new_price
+                    print('Item price updated.')
+                    print()
+                    break
+            else:
+                print('That is not a valid index of the list')
+                print()
+
 print('Thank you. Goodbye.')
